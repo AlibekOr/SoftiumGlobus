@@ -5,7 +5,7 @@ const RootLayout = () => {
     return (
         <SafeAreaView>
             <Text>
-                Hello world
+               git hub test
             </Text>
         </SafeAreaView>
     )
