@@ -1,13 +1,16 @@
-import {View, Text} from "react-native";
-import {SafeAreaView} from "react-native-safe-area-context";
+import {Stack} from "expo-router";
+import {Provider} from "react-redux";
+import {store} from "@/store";
 
 const RootLayout = () => {
     return (
-        <SafeAreaView>
-            <Text>
-               git hub test
-            </Text>
-        </SafeAreaView>
+        <Provider store={store}>
+            <Stack>
+                <Stack.Screen name={'index'} options={{headerShown: false}}/>
+                <Stack.Screen name={'auth'} options={{headerShown: false}}/>
+                <Stack.Screen name={'(tabs)'} options={{headerShown: false}}/>
+            </Stack>
+        </Provider>
     )
 }
 export default RootLayout
