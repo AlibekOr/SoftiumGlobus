@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {IInputForm} from "@/store/auth/type";
+import {IInputForm, IPasswordChange, IPasswordChangeVerify} from "@/store/auth/type";
 
 export const authApi = createApi({
     reducerPath: 'auth',
@@ -13,9 +13,22 @@ export const authApi = createApi({
                 url: '/token',
                 method: 'POST'
             }),
-
         }),
+        passwordChange: build.mutation({
+            query: (body: IPasswordChange) => ({
+                body,
+                url: '/users/password-change',
+                method: 'POST'
+            })
+        }),
+        passwordChangeVerify: build.mutation({
+            query: (body: IPasswordChangeVerify) => ({
+                body,
+                url: '/users/password-change/verify',
+                method: 'POST',
+            })
+        })
 
     })
 })
-export const {useLoginMutation} = authApi
+export const {useLoginMutation, usePasswordChangeMutation, usePasswordChangeVerifyMutation} = authApi

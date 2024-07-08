@@ -8,7 +8,7 @@ const ReklamaLayout = () => {
             <View>
                 <Text> Globus Nukus №1</Text>
                 <Text> Добро пожаловать </Text>
-                <TouchableOpacity onPress={() => router.push('auth')}>
+                <TouchableOpacity onPress={() => router.replace('auth')}>
                     <Text>Начать</Text>
                 </TouchableOpacity>
             </View>
