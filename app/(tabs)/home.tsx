@@ -12,7 +12,7 @@ const HomeScreens = () => {
                 <Text>hello tabs</Text>
             </View>
             <View>
-                {isSuccess && <ProductCart allProducts={data.data}/>}
+                {isSuccess && <ProductCart/>}
             </View>
         </SafeAreaView>
     )

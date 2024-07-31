@@ -17,7 +17,6 @@ const SignUp = () => {
         gender: ""
 
     })
-    console.log(signUpForm)
     const [requirement, setRequirement] = useState(false)
     return (
         <SafeAreaView>

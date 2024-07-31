@@ -7,8 +7,12 @@ import {FormInput} from "@/components/FormInput";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {authStyle} from "@/app/auth/style/style";
 import {router} from "expo-router";
+import {useAppDispatch} from "@/store/hooks/hook";
+import {fetchAllCart} from "@/store/cartSlice/cartSlice";
+import {accessToken} from "@/store/auth/authToken";
 
 const SignIn = () => {
+    const dispatch = useAppDispatch()
     const [loginMutation] = useLoginMutation()
     const [requirement, setRequirement] = useState(false)
     const [formVal, setFormVal] = useState({
@@ -21,9 +25,14 @@ const SignIn = () => {
             try {
                 await loginMutation(formVal).then((e) => {
                     if (e.data) {
-                        router.replace('/home')
-                        AsyncStorage.setItem('access', e.data.data.token.access)
-                        AsyncStorage.setItem('refresh', e.data.data.token.refresh)
+                        try {
+                            dispatch(accessToken(e.data.data.token))
+                            router.replace('/home')
+                            AsyncStorage.setItem('access', e.data.data.token.access)
+                            AsyncStorage.setItem('refresh', e.data.data.token.refresh)
+                        } catch (err) {
+                            console.log(err)
+                        }
                     } else {
                         alert('login yamasa parol qate!')
                     }

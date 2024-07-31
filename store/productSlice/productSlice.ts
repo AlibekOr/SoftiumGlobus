@@ -10,8 +10,19 @@ export const productSlice = createApi({
         }),
         getOneProduct: build.query({
             query: (productId: number) => `/products/${productId}`
-        })
+        }),
+        getSearchProduct: build.query({
+            query: (product: string) => `/products?search=${product}`
+        }),
+        getProductNext: build.query({
+            query: (index) => `/products?limit=20&offset=${index}`
+        }),
     })
 
 })
-export const {useGetAllProductsQuery, useGetOneProductQuery} = productSlice
+export const {
+    useGetAllProductsQuery,
+    useGetOneProductQuery,
+    useGetSearchProductQuery,
+    useGetProductNextQuery
+} = productSlice
