@@ -4,7 +4,7 @@ import {useGetAllProductsQuery} from "@/store/productSlice/productSlice";
 import {ProductCart} from "@/components/productCart";
 
 const HomeScreens = () => {
-    const {data, error, isLoading, isSuccess} = useGetAllProductsQuery('')
+    const {isSuccess} = useGetAllProductsQuery('')
 
     return (
         <SafeAreaView>
