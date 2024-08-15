@@ -5,21 +5,19 @@ import {useAppSelector} from "@/store/hooks/hook";
 import {useGetAllProductsQuery} from "@/store/productSlice/productSlice";
 import axios from "axios";
 
-
-export const ProductCart = ({cate}: any) => {
+export const ProductCart = () => {
     const {data, error, isLoading, isSuccess} = useGetAllProductsQuery('')
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(0); // track the current page
     const [loadingMore, setLoadingMore] = useState(false); // track loading state for additional pages
     const authToken = useAppSelector(state => state.authToken);
-    if (cate !== undefined) {
-        console.log('hello')
-    }
+
     useEffect(() => {
         if (data) {
             setProducts(data.data.items);
         }
     }, [data]);
+
     const loadMoreProducts = async () => {
         if (loadingMore) return;
 

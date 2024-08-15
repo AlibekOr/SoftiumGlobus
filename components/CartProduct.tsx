@@ -1,8 +1,7 @@
-import {Image, StyleSheet, TouchableHighlight, Text, TouchableOpacity, View} from "react-native";
+import {Image, StyleSheet, Text, TouchableOpacity, View, Pressable} from "react-native";
 import {router} from "expo-router";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {useAddToCart} from "@/components/cart/query/cart-query";
-import {CarouselImg} from "@/components/CarouselImg";
 
 interface IProps {
     id: number,
@@ -29,18 +28,18 @@ export const CartProduct = (props: any) => {
     }
     return (
         <View>
-            <TouchableHighlight style={styles.con} onPress={() => router.push(`modal/${id}`)}>
-                <CarouselImg image={images}/>
+            <Pressable style={styles.con} onPress={() => router.push(`modal/${id}`)}>
+                <Image width={168} height={230} style={{borderRadius: 13}} source={{uri: images[0].image}}/>
                 <Text style={styles.title}>{name} </Text>
                 <View style={{alignItems: 'flex-end'}}>
                     <Text style={styles.priceStyle}>{price} сум</Text>
                 </View>
                 <View style={styles.cartBtn}>
-                    <TouchableHighlight style={styles.touchable} onPress={() => submit(props)}>
+                    <TouchableOpacity style={styles.touchable} onPress={() => submit(props)}>
                         <MaterialCommunityIcons style={styles.btn} name="shopping-outline"/>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
-            </TouchableHighlight>
+            </Pressable>
         </View>
     )
 }
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     con: {
         width: 165,
         marginTop: 10,
-        marginBottom: 40,
+        marginBottom: 10,
         marginLeft: 7,
     }, img: {
         width: 165,

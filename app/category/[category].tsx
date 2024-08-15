@@ -1,15 +1,20 @@
-import {Text, View} from "react-native";
 import {useLocalSearchParams} from "expo-router";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {useGetAllProductsQuery} from "@/store/productSlice/productSlice";
-import {ProductCart} from "@/components/productCart";
+import {CategoryList} from "@/components/category/ui/category-list";
+import {useGetSingleData} from "@/components/category/query/category-query";
+import {useEffect, useState} from "react";
 
 const Category = () => {
-    const {data, error, isLoading, isSuccess} = useGetAllProductsQuery('')
+    const [product, setProduct] = useState([])
     const {category} = useLocalSearchParams()
+    const {data, isSuccess} = useGetSingleData(category)
+    console.log(isSuccess)
     return (
         <SafeAreaView>
-            <ProductCart cate={category}/>
+            {isSuccess &&
+                <CategoryList categoryData={data.data.items} category={category}/>
+
+            }
         </SafeAreaView>
     )
 }

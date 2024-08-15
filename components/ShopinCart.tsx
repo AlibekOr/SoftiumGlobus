@@ -1,4 +1,3 @@
-
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {ICartType} from "@/store/cartSlice/cartType";
 import {MaterialIcons} from '@expo/vector-icons';

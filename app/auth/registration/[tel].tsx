@@ -1,24 +1,20 @@
-import {router, useLocalSearchParams} from "expo-router";
+import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {Image, StyleSheet, Text, TextInput, TextInputKeyPressEventData, TouchableOpacity, View} from "react-native";
 import {OtpInput} from "react-native-otp-entry";
+import {router, useLocalSearchParams} from "expo-router";
 import {useState} from "react";
-import {usePasswordChangeVerifyMutation} from "@/store/auth/authSlice";
- const VerifyPassword = () => {
+import {usePasswordChangeVerifyMutation, useRegistrationVerifyMutation} from "@/store/auth/authSlice";
+
+const VerifyRegistration = () => {
     const {tel} = useLocalSearchParams()
+    const [registration] = useRegistrationVerifyMutation()
     const [outVal, setOutVal] = useState('')
-    const [changeVerify] = usePasswordChangeVerifyMutation()
     const onPress = async () => {
         const body: any = {
             phone: tel,
             otp: outVal
         }
-        await changeVerify(body).then((e) => {
-            if (e.data.success === true) {
-                alert('Смена пароля')
-                router.replace('auth')
-            }
-        })
+        await registration(body).then(() => alert('успешно регистрация')).then(() => router.replace('auth'))
     }
     return (
         <SafeAreaView>
@@ -52,8 +48,7 @@ import {usePasswordChangeVerifyMutation} from "@/store/auth/authSlice";
         </SafeAreaView>
     )
 }
-export default VerifyPassword
-
+export default VerifyRegistration
 const styles = StyleSheet.create({
     image: {
         width: 100,

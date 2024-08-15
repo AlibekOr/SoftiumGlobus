@@ -1,9 +1,9 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useState} from "react";
-import RadioForm from "react-native-simple-radio-button";
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from "react-native-simple-radio-button";
 
 export const RadioBtn = ({handelChange}: any) => {
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState()
     const onPress = (value: any) => {
         setValue(value)
         if (value === 0) {
@@ -13,18 +13,50 @@ export const RadioBtn = ({handelChange}: any) => {
         }
     }
     const items = [
-        {label: 'Male', value: 0},
-        {label: 'Female', value: 1}
+        {label: 'Мужской', value: 0},
+        {label: 'Женский', value: 1}
     ]
     return (
         <View>
-            <RadioForm style={styles.radioBtn} radio_props={items} initial={value} onPress={(value) => onPress(value)}/>
+            <RadioForm
+                formHorizontal={true}
+                animation={true}
+                style={styles.radioBtn}
+            >
+                {/* To create radio buttons, loop through your array of options */}
+                {items.map((obj, i) => (
+                    <RadioButton labelHorizontal={true} key={i}>
+                        {/* You can set RadioButtonLabel before RadioButtonInput */}
+                        <RadioButtonInput
+                            obj={obj}
+                            index={i}
+                            isSelected={value === i}
+                            onPress={() => onPress(obj.value, i)}
+                            borderWidth={1}
+                            buttonInnerColor={'#e74c3c'}
+                            buttonOuterColor={value === i ? '#e74c3c' : 'rgba(255,1,1,0.75)'}
+                            buttonSize={27}
+                            buttonOuterSize={27}
+                            buttonStyle={{}}
+                            buttonWrapStyle={{marginLeft: 20}}
+                        />
+                        <RadioButtonLabel
+                            obj={obj}
+                            index={i}
+                            labelHorizontal={true}
+                            onPress={() => onPress(obj.value, i)}
+                            labelStyle={{fontSize: 20, color: 'black'}}
+                            labelWrapStyle={{}}
+                        />
+                    </RadioButton>
+                ))}
+            </RadioForm>
         </View>
     )
 }
 const styles = StyleSheet.create({
     radioBtn: {
-        flexDirection: 'row',
-        alignContent: 'center'
+        marginTop: 15,
+        marginBottom: 15
     }
 })

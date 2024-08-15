@@ -12,7 +12,7 @@ interface IProps {
 
 export const CategoryCart = (props: IProps) => {
     return (
-        <TouchableOpacity onPress={() => router.push(`category/${props.name}`)}>
+        <TouchableOpacity onPress={() => router.push(`category/${props.id}`)}>
             <View style={styles.view}>
                 <View style={styles.title}>
                     <Image alt={'Image'} style={styles.img}

@@ -26,7 +26,7 @@ export const FormInput = (props: IFormInput) => {
 }
 const style = StyleSheet.create({
     inputStyle: {
-        borderRadius: 30,
+        borderRadius: 20,
         backgroundColor: 'rgb(227, 225, 225)',
         width: '100%',
         height: 70,

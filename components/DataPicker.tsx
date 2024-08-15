@@ -9,17 +9,18 @@ export const DataPickerInput = ({handelChange}: any) => {
     const handleOnPress = () => {
         setOpen(!open)
     }
+
     const handleChange = (propDate: any) => {
         setDate(propDate)
     }
     const onPress = () => {
-        handelChange(date)
+        handelChange(date.replaceAll('/', '-'))
         setOpen(!open)
     }
     return (
-        <View>
-            <TouchableOpacity onPress={handleOnPress}>
-                <Text>{date}</Text>
+        <View style={{width: '100%'}}>
+            <TouchableOpacity style={styles.dateCon} onPress={handleOnPress}>
+                <Text style={styles.btnText}>{date}</Text>
             </TouchableOpacity>
             <Modal
                 animationType={'slide'}
@@ -29,16 +30,19 @@ export const DataPickerInput = ({handelChange}: any) => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <DatePicker
+                            options={{}}
                             mode={'calendar'}
                             selected={date}
                             onDateChange={handleChange}
                         />
-                        <TouchableOpacity onPress={onPress}>
-                            <Text>add</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={handleOnPress}>
-                            <Text>close</Text>
-                        </TouchableOpacity>
+                        <View style={styles.datePickerBtn}>
+                            <TouchableOpacity onPress={handleOnPress}>
+                                <Text style={styles.btn}>Отмена</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={onPress}>
+                                <Text style={styles.btn}>ОК</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -50,14 +54,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 22
+        marginTop: 22,
     },
     modalView: {
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
         width: '90%',
-        padding: 35,
+        padding: 25,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -67,5 +71,29 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         shadowOpacity: 0.25,
         elevation: 5
+    },
+    dateCon: {
+        width: '100%',
+        borderRadius: 20,
+        backgroundColor: 'rgb(227, 225, 225)',
+        height: 70,
+        paddingLeft: 25,
+        justifyContent: 'center',
+    },
+    btnText: {
+        fontSize: 18,
+        color: 'rgba(54,54,54,0.64)'
+    },
+    datePickerBtn: {
+        width: '100%',
+        flexDirection: 'row',
+        gap: 30,
+        justifyContent: 'flex-end',
+        marginRight: '20%'
+    },
+    btn: {
+        fontSize: 16,
+        color: 'red',
+        fontWeight: '600'
     }
 })

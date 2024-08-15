@@ -5,15 +5,32 @@ import {FontAwesome6} from '@expo/vector-icons';
 
 const TabsLayout = () => {
     return (
-        <Tabs>
+        <Tabs
+            screenOptions={{
+                tabBarActiveTintColor: "#e05656",
+                tabBarInactiveTintColor: "#CDCDE0",
+                tabBarLabelStyle: {
+                    fontSize: 11
+                },
+                tabBarStyle: {
+                    backgroundColor: "#161622",
+                    borderTopWidth: 1,
+                    borderTopColor: "#232533",
+                    height: 67,
+                    paddingTop: 5,
+                    paddingBottom: 5
+                },
+            }}
+        >
             <Tabs.Screen
                 name={'home'}
                 options={{
                     title: 'Главная',
                     headerShown: false,
                     tabBarIcon(props) {
-                        return <Icons name={'home'} {...props}/>
-                    }
+                        return <Icons style={{fontSize: 28}} name={'home'} {...props}/>
+                    },
+
                 }
                 }
             />
@@ -23,7 +40,7 @@ const TabsLayout = () => {
                     title: 'Каталог',
                     headerShown: false,
                     tabBarIcon(props) {
-                        return <Icons name={'manage-search'} {...props}/>
+                        return <Icons style={{fontSize: 28}} name={'manage-search'} {...props}/>
                     }
                 }
                 }
@@ -32,9 +49,11 @@ const TabsLayout = () => {
                 name={'cart'}
                 options={{
                     title: 'Корзина',
+                    headerTintColor: 'black',
                     headerShown: false,
+                    tabBarBadge: 3,
                     tabBarIcon(props) {
-                        return <MaterialCommunityIcons name="shopping-outline" {...props}/>
+                        return <MaterialCommunityIcons style={{fontSize: 28}} name="shopping-outline" {...props}/>
                     }
                 }
                 }
@@ -45,7 +64,7 @@ const TabsLayout = () => {
                     title: 'Желания',
                     headerShown: false,
                     tabBarIcon(props) {
-                        return <MaterialCommunityIcons name="cards-heart-outline" {...props}/>
+                        return <MaterialCommunityIcons style={{fontSize: 28}} name="cards-heart-outline" {...props}/>
                     }
                 }
                 }
@@ -56,7 +75,7 @@ const TabsLayout = () => {
                     title: 'Кабинет',
                     headerShown: false,
                     tabBarIcon(props) {
-                        return <FontAwesome6 name="user" {...props}/>
+                        return <FontAwesome6 style={{fontSize: 26}} name="user" {...props}/>
                     }
                 }
                 }

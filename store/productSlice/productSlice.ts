@@ -9,7 +9,7 @@ export const productSlice = createApi({
             query: () => '/products'
         }),
         getOneProduct: build.query({
-            query: (productId: number) => `/products/${productId}`
+            query: (productId) => `/products/${productId}`
         }),
         getSearchProduct: build.query({
             query: (product: string) => `/products?search=${product}`

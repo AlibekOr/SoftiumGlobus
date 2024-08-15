@@ -21,7 +21,6 @@ export const PhoneInputs = (props: IProps) => {
                 defaultCode="UZ"
                 layout="first"
                 onChangeText={handelChangeText}
-                autoFocus
             />
             <Text style={requirement === false ? style.textReq : style.visible}>Поле обязателное</Text>
 
@@ -30,7 +29,7 @@ export const PhoneInputs = (props: IProps) => {
 }
 const style = StyleSheet.create({
     phoneInput: {
-        borderRadius: 30,
+        borderRadius: 20,
         backgroundColor: 'rgb(227, 225, 225)',
         width: '100%',
         height: 70,

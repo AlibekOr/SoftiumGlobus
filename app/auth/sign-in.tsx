@@ -27,7 +27,7 @@ const SignIn = () => {
                     if (e.data) {
                         try {
                             dispatch(accessToken(e.data.data.token))
-                            router.replace('/home')
+                            router.replace('home')
                             AsyncStorage.setItem('access', e.data.data.token.access)
                             AsyncStorage.setItem('refresh', e.data.data.token.refresh)
                         } catch (err) {
