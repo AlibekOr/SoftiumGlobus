@@ -4,13 +4,14 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {useGetOneProductQuery} from "@/store/productSlice/productSlice";
 import {ModalImg} from "@/app/modal/ModalImg";
 import {useAppSelector} from "@/store/hooks/hook";
-import {useAddToCart} from "@/components/cart/query/cart-query";
+import {useAddToCart, useInterests} from "@/components/cart/query/cart-query";
 
 const ModalScreen = () => {
     const {id} = useLocalSearchParams()
     const {data, isSuccess, isLoading} = useGetOneProductQuery(id)
     const token = useAppSelector(state => state.authToken);
     const addToCart = useAddToCart()
+    const interests = useInterests()
     const submit = async (props: number) => {
         const body = {
             product: props,
@@ -19,6 +20,7 @@ const ModalScreen = () => {
         }
         try {
             await addToCart.mutateAsync(body)
+            await interests.mutateAsync({product: body.product, token: body.token})
         } catch (err) {
             console.log(err)
         }
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         alignContent: 'center',
         borderStyle: 'solid',
-        borderWidth: 1,
+        borderTopWidth: 1,
         borderTopColor: 'rgba(0,0,0,0.16)'
     },
     btnView: {

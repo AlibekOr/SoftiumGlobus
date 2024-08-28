@@ -2,8 +2,8 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {View, Text, FlatList, Button} from "react-native";
 import {useGetAllProductsQuery} from "@/store/productSlice/productSlice";
 import {ProductCart} from "@/components/productCart";
-import {CarouselImg} from "@/components/slider/CarouselImg";
 import MyCarousel from "@/components/slider/SnapCarousel";
+import {SearchBtn} from "@/components/SearchBtn";
 
 const HomeScreens = () => {
     const {isSuccess} = useGetAllProductsQuery('')
@@ -11,9 +11,7 @@ const HomeScreens = () => {
     return (
         <SafeAreaView>
             <View>
-                <Text>
-                    search
-                </Text>
+                <SearchBtn/>
             </View>
             <View>
                 <FlatList data={[1, 2]} renderItem={({item}) => {

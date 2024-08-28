@@ -7,7 +7,6 @@ import {useState} from "react";
 import {router} from "expo-router";
 import {FormInput} from "@/components/FormInput";
 import {usePasswordChangeMutation} from "@/store/auth/authSlice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ForgetPassword = () => {
     const [changeValues, setChangeValues] = useState({

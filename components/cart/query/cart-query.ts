@@ -72,3 +72,14 @@ export const useDeleteAll = () => {
         }
     })
 }
+export const useInterests = () => {
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: cartApi.interests,
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['interests']
+            })
+        }
+    })
+}

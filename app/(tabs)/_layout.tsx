@@ -59,17 +59,6 @@ const TabsLayout = () => {
                 }
             />
             <Tabs.Screen
-                name={'desires'}
-                options={{
-                    title: 'Желания',
-                    headerShown: false,
-                    tabBarIcon(props) {
-                        return <MaterialCommunityIcons style={{fontSize: 28}} name="cards-heart-outline" {...props}/>
-                    }
-                }
-                }
-            />
-            <Tabs.Screen
                 name={'user'}
                 options={{
                     title: 'Кабинет',
