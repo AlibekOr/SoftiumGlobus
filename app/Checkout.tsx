@@ -4,6 +4,7 @@ import {router} from "expo-router";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import {useAppSelector} from "@/store/hooks/hook";
 import {useRef, useState} from "react";
+import {CheckoutForm} from "@/components/checkout/CheckoutForm";
 // `wss://globus-nukus/ws/orders?token={{${authToken.access}}}`
 const Checkout = () => {
     const authToken = useAppSelector(state => state.authToken);
@@ -17,9 +18,7 @@ const Checkout = () => {
                 </TouchableOpacity>
                 <Text style={styles.titleText}>Оформление заказа</Text>
             </View>
-            <View>
-
-            </View>
+                <CheckoutForm/>
         </SafeAreaView>
     )
 }

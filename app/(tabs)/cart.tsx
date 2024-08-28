@@ -13,7 +13,7 @@ const CartScreen = () => {
         setToken(tokens)
     }
     cookies()
-    const {data, isSuccess} = useAllCartProducts({token: token, id: 0})
+    const {data, isSuccess} = useAllCartProducts({token: token})
     return (
         <SafeAreaView style={styles.viewSafe}>
             <View>
@@ -48,7 +48,7 @@ const CartScreen = () => {
                 <View style={styles.checkoutBtn}>
                     <View>
                         <Text
-                            style={styles.customPrice}>{data.data.cart.reduce((acc: number, cur: any,) => acc + cur.product.price, 0)} сум</Text>
+                            style={styles.customPrice}>{data.data.cart.reduce((acc: number, cur: any,) => acc + cur.product.price * cur.quantity, 0)} сум</Text>
                         <Text style={styles.customQty}>
                             {data.data.cart.reduce((acc: number, cur: any,) => acc + cur.quantity, 0)} товара
                         </Text>
