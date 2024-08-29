@@ -7,10 +7,9 @@ import {CheckoutBlock1} from "@/components/checkout/CheckoutBlock1";
 export const CheckoutForm = () => {
     const authToken = useAppSelector(state => state.authToken);
     const {data} = useAllCartProducts({token: authToken.access})
-    console.log(data)
     return (
         <View style={styles.con}>
-            <CheckoutBlock1/>
+            <CheckoutBlock1 data={data.data.cart}/>
             <CheckoutBlock2 data={data.data.cart}/>
         </View>
     )
