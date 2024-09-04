@@ -5,7 +5,6 @@ import {useGetSingleData} from "@/components/category/query/category-query";
 import {useState} from "react";
 
 const Category = () => {
-    const [product, setProduct] = useState([])
     const {category} = useLocalSearchParams()
     const {data, isSuccess} = useGetSingleData(category)
     return (

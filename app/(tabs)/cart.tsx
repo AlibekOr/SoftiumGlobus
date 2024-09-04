@@ -16,7 +16,7 @@ const CartScreen = () => {
     const {data, isSuccess} = useAllCartProducts({token: token})
     return (
         <SafeAreaView style={styles.viewSafe}>
-            <View>
+            <View style={{height: '90.5%'}}>
                 <View style={{alignItems: 'center'}}>
                     <Text style={styles.title}>Корзина</Text>
                 </View>
@@ -82,8 +82,7 @@ const styles = StyleSheet.create({
         paddingRight: '5%',
         paddingLeft: '5%',
         borderTopColor: 'rgba(0,0,0,0.16)',
-        borderTopWidth: 1
-
+        borderTopWidth: 1,
     },
     customPrice: {
         fontSize: 28,

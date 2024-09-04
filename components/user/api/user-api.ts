@@ -28,7 +28,7 @@ export const userApi = {
 
     },
     search: async (name: string) => {
-        const {data} = await axios.get(`${URL}/products?name=`)
+        const {data} = await axios.get(`${URL}/products?search=${name}`)
         return data
     }
 }

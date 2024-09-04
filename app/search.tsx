@@ -3,15 +3,13 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {Fontisto, Octicons} from "@expo/vector-icons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import {router} from "expo-router";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useSearch} from "@/components/user/query/user-query";
 import {SearchInput} from "@/components/SearchInput";
 
 const Search = () => {
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState("")
     const {data} = useSearch(inputValue)
-    console.log('data')
-    console.log(data.data.items)
     return (
         <SafeAreaView>
             <View style={styles.con}>
@@ -28,6 +26,15 @@ const Search = () => {
                     </Pressable>
                 </View>
             </View>
+            {data !== '' && data !== undefined ? (
+                <View>
+                    <SearchInput data={data.data.items}/>
+                </View>
+            ) : (
+                <View style={styles.productInfo}>
+                    <Text>Ищите товар по названию</Text>
+                </View>
+            )}
         </SafeAreaView>
     )
 }
@@ -56,5 +63,10 @@ const styles = StyleSheet.create({
         width: '85%',
         paddingRight: 15,
         paddingLeft: 15
+    },
+    productInfo: {
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        height: '70%'
     }
 })

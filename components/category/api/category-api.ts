@@ -12,7 +12,6 @@ export const categoryApi = {
     },
     getCategoryID: async (categoryID: string) => {
         const {data} = await axios.get(`${URL}/categories/${categoryID}`)
-        console.log(data)
         return data
     }
 }

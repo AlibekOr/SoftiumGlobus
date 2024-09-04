@@ -5,6 +5,7 @@ import {useGetOneProductQuery} from "@/store/productSlice/productSlice";
 import {ModalImg} from "@/app/modal/ModalImg";
 import {useAppSelector} from "@/store/hooks/hook";
 import {useAddToCart, useInterests} from "@/components/cart/query/cart-query";
+import {useEffect} from "react";
 
 const ModalScreen = () => {
     const {id} = useLocalSearchParams()
@@ -12,6 +13,12 @@ const ModalScreen = () => {
     const token = useAppSelector(state => state.authToken);
     const addToCart = useAddToCart()
     const interests = useInterests()
+    useEffect(() => {
+        if (isSuccess === true) {
+            interests.mutateAsync({product: data.data.items.id, token: token.access}).then((e) => console.log(e))
+
+        }
+    }, [id]);
     const submit = async (props: number) => {
         const body = {
             product: props,
@@ -20,7 +27,6 @@ const ModalScreen = () => {
         }
         try {
             await addToCart.mutateAsync(body)
-            await interests.mutateAsync({product: body.product, token: body.token})
         } catch (err) {
             console.log(err)
         }
@@ -53,7 +59,7 @@ const ModalScreen = () => {
                     <View style={styles.bottomView}>
                         <View style={styles.btnView}>
                             <View>
-                                <Text style={{fontSize: 26}}>{data.data.items.price}</Text>
+                                <Text style={{fontSize: 26}}>{data.data.items.price} сум</Text>
                             </View>
                             <TouchableOpacity style={styles.addToCart} onPress={() => submit(data.data.items.id)}>
                                 <Text style={styles.buttonBTn}>В корзину</Text>
@@ -76,12 +82,12 @@ const styles = StyleSheet.create({
     },
     bottomView: {
         width: '100%',
-        height: 70,
-        paddingTop: 15,
+        height: 60,
+        paddingTop: 7,
         alignContent: 'center',
         borderStyle: 'solid',
         borderTopWidth: 1,
-        borderTopColor: 'rgba(0,0,0,0.16)'
+        borderTopColor: 'rgba(0,0,0,0.16)',
     },
     btnView: {
         flexDirection: 'row',

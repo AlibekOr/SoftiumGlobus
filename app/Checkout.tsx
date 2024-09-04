@@ -18,7 +18,7 @@ const Checkout = () => {
                 </TouchableOpacity>
                 <Text style={styles.titleText}>Оформление заказа</Text>
             </View>
-                <CheckoutForm/>
+            <CheckoutForm/>
         </SafeAreaView>
     )
 }

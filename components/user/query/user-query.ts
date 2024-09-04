@@ -23,8 +23,10 @@ export const usePutMe = () => {
 }
 export const useSearch = (name: string) => {
     return useQuery({
-        queryKey: ['search'],
-        queryFn: () => userApi.search(name),
+        queryKey: [name],
+        queryFn: () => (
+            name.length > 2 ? userApi.search(name) : ''
+        ),
         staleTime: 30_000
     })
 }
