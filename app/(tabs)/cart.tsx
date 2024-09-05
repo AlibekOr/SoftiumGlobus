@@ -1,18 +1,14 @@
 import {FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {ShopinCart} from "@/components/ShopinCart";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useState} from "react";
 import {useAllCartProducts} from "@/components/cart/query/cart-query";
 import {router} from "expo-router";
+import {useAppSelector} from "@/store/hooks/hook";
 
 const CartScreen = () => {
-    const [token, setToken] = useState('');
-    const cookies = async () => {
-        const tokens: any = await AsyncStorage.getItem('access')
-        setToken(tokens)
-    }
-    cookies()
+    const tokens = useAppSelector(state => state.authToken);
+    const [token, setToken] = useState(tokens.access);
     const {data, isSuccess} = useAllCartProducts({token: token})
     return (
         <SafeAreaView style={styles.viewSafe}>

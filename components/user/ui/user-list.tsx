@@ -3,7 +3,6 @@ import {useGetMe} from "@/components/user/query/user-query";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {router} from "expo-router";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useAppDispatch} from "@/store/hooks/hook";
 import {accessToken} from "@/store/auth/authToken";
 
@@ -11,7 +10,6 @@ export const UserList = ({token}: { token: string }) => {
     const {data} = useGetMe(token)
     const dispatch = useAppDispatch()
     const onPressLogout = () => {
-        AsyncStorage.removeItem('access')
         dispatch(accessToken({
             access: '',
             refresh: ''

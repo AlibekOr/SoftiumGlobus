@@ -1,5 +1,4 @@
 import React from 'react';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {router} from "expo-router";
 
