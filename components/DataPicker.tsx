@@ -1,15 +1,17 @@
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import DatePicker from 'react-native-modern-datepicker'
 
 
-export const DataPickerInput = ({handelChange}: any) => {
+export const DataPickerInput = ({handelChange, value}: any) => {
     const [open, setOpen] = useState(false)
     const [date, setDate] = useState('Выберите Дату Рождения')
     const handleOnPress = () => {
         setOpen(!open)
     }
-
+    useEffect(() => {
+        setDate(value)
+    }, [value]);
     const handleChange = (propDate: any) => {
         setDate(propDate)
     }

@@ -1,17 +1,24 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from "react-native-simple-radio-button";
 
-export const RadioBtn = ({handelChange}: any) => {
-    const [value, setValue] = useState()
+export const RadioBtn = ({handelChange, value}: any) => {
+    const [valueRadio, setValueRadio] = useState()
     const onPress = (value: any) => {
-        setValue(value)
+        setValueRadio(value)
         if (value === 0) {
             handelChange('male')
         } else {
             handelChange('female')
         }
     }
+    useEffect(() => {
+        if (value === 'male') {
+            return setValueRadio(0)
+        } else {
+            return setValueRadio(1)
+        }
+    }, [value]);
     const items = [
         {label: 'Мужской', value: 0},
         {label: 'Женский', value: 1}
@@ -30,11 +37,11 @@ export const RadioBtn = ({handelChange}: any) => {
                         <RadioButtonInput
                             obj={obj}
                             index={i}
-                            isSelected={value === i}
+                            isSelected={valueRadio === i}
                             onPress={() => onPress(obj.value, i)}
                             borderWidth={1}
                             buttonInnerColor={'#e74c3c'}
-                            buttonOuterColor={value === i ? '#e74c3c' : 'rgba(255,1,1,0.75)'}
+                            buttonOuterColor={valueRadio === i ? '#e74c3c' : 'rgba(255,1,1,0.75)'}
                             buttonSize={27}
                             buttonOuterSize={27}
                             buttonStyle={{}}

@@ -58,5 +58,13 @@ export const cartApi = {
             }
         })
         return data
+    },
+    interests: async (body: { product: number, token: string }) => {
+        const {data} = await axios.post(`${HTTP}/interests`, body.product, {
+            headers: {
+                Authorization: `Bearer ${body.token}`
+            }
+        })
+        return data
     }
 }

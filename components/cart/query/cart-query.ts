@@ -3,7 +3,6 @@ import {cartApi} from "@/components/cart/api/cart-api";
 
 export interface IBody {
     token: string,
-    id: number
 }
 
 export interface IBodyPost {
@@ -22,7 +21,7 @@ export const useAllCartProducts = (body: IBody) => {
 
 export const useOneProduct = (body: IBody) => {
     return useQuery({
-        queryKey: ['cart', body.id],
+        queryKey: ['cart'],
         queryFn: () => cartApi.getOne(body),
         staleTime: 5_000
     })
@@ -68,6 +67,17 @@ export const useDeleteAll = () => {
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['cart']
+            })
+        }
+    })
+}
+export const useInterests = () => {
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: cartApi.interests,
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ['interests']
             })
         }
     })

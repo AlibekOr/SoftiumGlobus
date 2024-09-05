@@ -4,7 +4,7 @@ export interface IInputForm {
 }
 
 export interface IPasswordChange {
-    phone: string,
+    phone: string | string[] | undefined,
     password: string,
     password2: string
 }

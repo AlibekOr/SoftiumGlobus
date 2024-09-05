@@ -89,13 +89,13 @@ const MyCarousel = (props: any) => {
                 ref={carouselRef}
                 sliderWidth={screenWidth}
                 sliderHeight={screenWidth}
-                itemWidth={screenWidth - 60}
+                itemWidth={screenWidth - 65}
                 data={entries}
                 renderItem={renderItem}
                 hasParallaxImages={true}
                 autoplay={true}
                 onSnapToItem={(index) => setActiveSlide(index)}
-
+                loop={true}
             />
             {pagination}
         </View>
@@ -108,11 +108,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: "relative",
-        marginBottom:20
+        marginBottom: 20,
     },
     item: {
         width: screenWidth - 60,
-        height: screenWidth - 60,
+        height: screenWidth - 200,
+        marginBottom: 13
     },
     imageContainer: {
         flex: 1,
